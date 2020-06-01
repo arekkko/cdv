@@ -29,8 +29,12 @@ using namespace std;
 */
 
 bool czy_wesola(Naturalna v){
+    Naturalna tab[20];
+    int index = 0;
 
-    int tab[10];
+    tab[index++] = suma_kwadrat(v);
+
+/*    int tab[10];
 
     tab[0] = suma_kwadrat(v);
     tab[1] = suma_kwadrat(tab[0]);
@@ -40,24 +44,23 @@ bool czy_wesola(Naturalna v){
     tab[5] = suma_kwadrat(tab[4]);
 
     printf("Wynik to: %i\n", tab[5]);
+*/
 
-    return 0;
 }
 
 Naturalna suma_kwadrat(Naturalna v){
 
+    Naturalna suma, cyfra;
+
     int cyfry[5];
 
-    while(v>1){
-        cyfry
-    }
+    do {
+        cyfra = v % 10;
+        suma += cyfra*cyfra;
+        v /= 10;
+    } while(v>0);
 
-    int cyfra1 = v%10;
-    v /= 10;
-
-    int cyfra2 = v;
-
-    return kwadrat(cyfra1) + kwadrat(cyfra2);
+    return suma;
 
 }
 
@@ -69,16 +72,23 @@ Naturalna kwadrat(Naturalna v){
 /*
 ** Main program
 */
-int main()
+int main(int argc, char* argv[])
 {
     Naturalna liczba = 18;
 
     int wynik = czy_wesola(liczba);
 
-    /*if( czy_wesola(liczba))
-        printf("Liczba %d jest wesola\n", liczba);
-    else
-        printf("Liczba %d nie jest wesola\n", liczba);
-    */
+    for(char** p=argv; *p != NULL; p++){
+        //printf("%d %s\n", i, argv[i]);
+        printf("%d %s\n", p - argv, *p);
+
+        Naturalna liczba = atol(*p);
+
+        if( czy_wesola(liczba))
+            printf("Liczba %d jest wesola\n", liczba);
+        else
+            printf("Liczba %d nie jest wesola\n", liczba);
+    }
+
     return 0;
 }
