@@ -15,9 +15,18 @@ namespace zadanie_1
                 Message.Info("3 - mnożenie");
                 Message.Info("4 - dzielenie");
                 Message.Info("5 - potęgowanie");
-
-                var control = Convert.ToInt32(Console.ReadLine()); 
                 
+                //Choose operation to proceed
+                int control = getDigitFromUser(); 
+
+                //Validate is operation in menu, if not try again
+                while(control <0 || control >5)
+                {
+                    Message.Error("Nie ma takiej operacji. Wybierz operację sposórd dostępnych.");
+                    control = getDigitFromUser(); 
+                }
+
+                //If user choosed 0 then exit program
                 if(control==0)
                 {
                     break;
@@ -26,9 +35,10 @@ namespace zadanie_1
                 //Get digits from users
                 Message.Info("Wprowadź liczby 1 oraz 2 zatwierdzając enterem");
 
-                float firstNumber = Convert.ToInt32(Console.ReadLine());
-                float secondNumber = Convert.ToInt32(Console.ReadLine()); 
+                float firstNumber = getDigitFromUser();
+                float secondNumber = getDigitFromUser();
 
+                //Create object Calculator
                 var calculator = new Calculator(firstNumber, secondNumber);
 
                 switch(control)
@@ -55,6 +65,19 @@ namespace zadanie_1
             }while(true); 
 
             Message.Info("Koniec programu");
+
+        }
+
+        public static int getDigitFromUser()
+        {
+            int digit = 0; 
+
+            while(!int.TryParse(Console.ReadLine(), out digit))
+            {
+                Message.Error("Niepoprawną wartość. Podaj liczbe");
+            }
+
+            return digit; 
         }
 
     }

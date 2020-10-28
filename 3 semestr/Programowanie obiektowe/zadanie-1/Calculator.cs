@@ -66,8 +66,14 @@ namespace zadanie_1
             return sum;
         }
 
-        public void OperationDivision()
+        public bool OperationDivision()
         {
+            if(SecondNumber == 0)
+            {
+                Message.Error("Nie można dzielić przez 0.");
+                return false;
+            }
+
              //Display info
             Message.Info("Wynik dzielenia:");
 
@@ -76,6 +82,8 @@ namespace zadanie_1
 
             //Pause
             Message.Pause();
+
+            return true;
         }
 
         public string CalcDivision()

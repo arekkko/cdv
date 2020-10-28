@@ -14,6 +14,11 @@ namespace zadanie_1
             Console.WriteLine(text);
         }
 
+        public static void Error(string text)
+        {
+            Console.WriteLine("Błąd: " + text);
+        }
+
         public static void Pause()
 {
             Console.Write("Naciśnij klawisz aby kontynuować . . . ");
