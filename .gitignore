@@ -38,3 +38,7 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# Visual Studio 2019
+.sln
+.csproj
