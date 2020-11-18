@@ -7,64 +7,64 @@ namespace Zadanie2
     class Integrate
     {
         //Properties gets from obejct initiation
-        private int _functionType = 0;
-        private int _intervalStart = 0;
-        private int _intervalStop = 0;
+        private int functionType = 0;
+        private int intervalStart = 0;
+        private int intervalStop = 0;
         
         //Working properties
-        private double _widthOfPart = 0;
-        public double _result = 0;
+        private double widthOfPart = 1;
+        public double result = 0;
 
-        public Integrate(int functionType)
+        public Integrate(int _functionType)
         {
-            _functionType = functionType;
-            _intervalStart = establishIntervalStart();
-            _intervalStop = establishIntervalStop();
+            functionType = _functionType;
+            intervalStart = establishIntervalStart();
+            intervalStop = establishIntervalStop();
         }
 
         //The Core method
         public bool calculate()
         {
 
-            calculateWidthOfPart();
-
             double result = 0;
 
-            switch(getFunctionType())
+            switch(this.FunctionType)
             {
                 case 1:
-                    Console.WriteLine("Podaj wartość potęgi");
-                    int power = Program.getDigitFromUser();
-
-                    Console.WriteLine("Podaj wartość wyrazu wolnego b");
-                    int b = Program.getDigitFromUser();
-
-                    for (int i = 1; i <= 3; i++)
                     {
-                        result += calculateUserFunctionType1(getIntervalStart() + i * getWidthOfPart(), power, b);
+                        Console.WriteLine("Podaj wartość potęgi");
+                        int power = Program.getDigitFromUser();
 
+                        Console.WriteLine("Podaj wartość wyrazu wolnego b");
+                        int b = Program.getDigitFromUser();
+
+                        for (double i = 1; i <= b; i += this.WidthOfPart)
+                        {
+                            result += this.calculateUserFunctionType1(this.IntervalStart + i, power, b) * this.WidthOfPart;
+                        }
+                    }
+                    break;
+                case 2:
+                    {
+                        Console.WriteLine("Podaj współczynnik kierunkowy prostej a");
+                        int a = Program.getDigitFromUser();
+
+                        Console.WriteLine("Podaj wartośc wyrazu wolnego b");
+                        int b = Program.getDigitFromUser();
+
+                        for (double i = 1; i <= b; i += this.WidthOfPart)
+                        {
+                            result += this.calculateUserFunctionType2(this.WidthOfPart + i, a, b);
+                        }
                     }
                     break;
                 default:
                     break;
             }
 
-            result = getWidthOfPart() * result; 
-
-            setResult(result); 
+            this.Result = result; 
 
             return true; 
-        }
-
-        private bool calculateWidthOfPart()
-        {
-
-            double calculatedWidthOfPart = (getIntervalStop() - getIntervalStart()) / 3;
-
-            setWidthOfPart(calculatedWidthOfPart);
-
-            return true; 
-
         }
 
         private double calculateUserFunctionType1(double x, int power, int b)
@@ -72,28 +72,9 @@ namespace Zadanie2
             return Math.Pow(x, power) + b;
         }
 
-        private int getFunctionType()
+        private double calculateUserFunctionType2(double x, int a, int b)
         {
-            return _functionType;
-        }
-
-        private int getIntervalStart()
-        {
-            return _intervalStart;
-        }
-
-        private int getIntervalStop()
-        {
-            return _intervalStop;
-        }
-
-        public double getResult()
-        {
-            return _result;
-        }
-        private double getWidthOfPart()
-        {
-            return _widthOfPart;
+            return a*x+b;
         }
 
         private int establishIntervalStart()
@@ -108,14 +89,28 @@ namespace Zadanie2
             return Program.getDigitFromUser();
         }
 
-        private void setWidthOfPart(double widthOfPart)
+        //Getters and setters section
+        public double Result
         {
-            _widthOfPart = widthOfPart;
+            private set { result = value; }
+            get { return result; }
         }
 
-        private void setResult(double result)
+        private double WidthOfPart
         {
-            _result = result;
+            get { return widthOfPart; }
+        }
+        private int FunctionType
+        {
+            get { return functionType; }
+        }
+        private int IntervalStart
+        {
+            get { return intervalStart; }
+        }
+        private int IntervalStop
+        {
+            get { return intervalStop; }
         }
     }
 }

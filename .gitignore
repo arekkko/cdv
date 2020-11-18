@@ -40,5 +40,5 @@ msbuild.wrn
 .vs/
 
 # Visual Studio 2019
-.sln
-.csproj
+*.sln
+*.csproj

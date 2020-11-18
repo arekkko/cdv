@@ -10,22 +10,19 @@ namespace Zadanie2
 
             do
             {
-                Console.WriteLine("Wybierz typ funkcji\n0. Koniec programu\n1. f(x)=x^2+b\n2. f(x)=3x^2+b");
+                Console.WriteLine("Wybierz działanie\n0. Koniec programu\n1. oblicz np. f(x)=x^2+b\n2. np. f(x)=x+4");
 
                 choice = getDigitFromUser();
 
-                switch (choice)
+                //Calculate only if user choose  properly function
+                if (choice > 0 && choice <=2)
                 {
-                    case 1:
-                        Integrate integrate = new Integrate(choice);
+                    Integrate integrate = new Integrate(choice);
 
-                        if (!integrate.calculate())
-                            Console.WriteLine("BLAD");
+                    if (!integrate.calculate())
+                        Console.WriteLine("BLAD");
 
-                        Console.WriteLine("WYNIK: " + integrate.getResult());
-                        break;
-                    default:
-                        break;
+                    Console.WriteLine("WYNIK: " + integrate.Result + "\n");
                 }
             } while (choice != 0);
         }
