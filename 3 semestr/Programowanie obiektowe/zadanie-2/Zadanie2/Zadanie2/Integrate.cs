@@ -13,7 +13,7 @@ namespace Zadanie2
         
         //Working properties
         private double widthOfPart = 1;
-        public double result = 0;
+        private double result = 0;
 
         public Integrate(int _functionType)
         {
